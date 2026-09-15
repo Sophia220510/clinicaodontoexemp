@@ -1,250 +1,114 @@
-import { useCallback, useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import caso1a from "@/assets/caso1-antes.jpg";
-import caso1d from "@/assets/caso1-depois.jpg";
-import caso2a from "@/assets/caso2-antes.jpg";
-import caso2d from "@/assets/caso2-depois.jpg";
-import caso3a from "@/assets/caso3-antes.jpg";
-import caso3d from "@/assets/caso3-depois.jpg";
-import clinic1 from "@/assets/clinic-1.jpg";
+import { ScanLine, Move3d, Crosshair, Box } from "lucide-react";
 import clinic2 from "@/assets/clinic-2.jpg";
-import clinic3 from "@/assets/clinic-3.jpg";
 import { ETAPAS, TECNOLOGIA } from "@/lib/site-data";
 import { Reveal, SectionHeading } from "./primitives";
-import { cn } from "@/lib/utils";
 
-const CASOS = [
-  {
-    title: "Clareamento e alinhamento estético",
-    time: "Resultado em 6 meses",
-    before: caso1a,
-    after: caso1d,
-  },
-  {
-    title: "Fechamento de diastema com facetas",
-    time: "Resultado em 3 semanas",
-    before: caso2a,
-    after: caso2d,
-  },
-  {
-    title: "Implante unitário com coroa de porcelana",
-    time: "Resultado em 4 meses",
-    before: caso3a,
-    after: caso3d,
-  },
-];
-
-export function AntesDepois() {
-  const [index, setIndex] = useState(0);
-  const caso = CASOS[index]!;
-
-  const go = useCallback((dir: number) => {
-    setIndex((i) => (i + dir + CASOS.length) % CASOS.length);
-  }, []);
-
-  return (
-    <section id="resultados" className="scroll-mt-28 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="Antes e Depois"
-          title="Resultados que falam por si"
-          lead="Imagens ilustrativas de casos clínicos. Cada tratamento é planejado individualmente."
-        />
-
-        <Reveal delay={80} className="mt-14">
-          <div className="rounded-[2.25rem] border border-border bg-card p-5 shadow-soft sm:p-8">
-            <div className="grid gap-5 sm:grid-cols-2">
-              {(["Antes", "Depois"] as const).map((label) => (
-                <figure key={label} className="relative overflow-hidden rounded-3xl">
-                  <img
-                    key={label + index}
-                    src={label === "Antes" ? caso.before : caso.after}
-                    alt={`${label} — ${caso.title}`}
-                    width={800}
-                    height={800}
-                    loading="lazy"
-                    className="h-64 w-full object-cover transition-all duration-700 sm:h-80"
-                  />
-                  <figcaption
-                    className={cn(
-                      "absolute top-4 left-4 rounded-full px-3.5 py-1.5 text-xs font-semibold",
-                      label === "Antes"
-                        ? "bg-background/90 text-primary"
-                        : "bg-accent text-accent-foreground",
-                    )}
-                  >
-                    {label}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-
-            <div className="mt-7 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
-              <div className="min-w-0">
-                <h3 className="truncate text-lg text-primary">{caso.title}</h3>
-                <p className="text-sm text-muted-foreground">{caso.time}</p>
-              </div>
-              <div className="flex shrink-0 items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => go(-1)}
-                  aria-label="Caso anterior"
-                  className="grid h-11 w-11 place-items-center rounded-full border border-border text-primary transition-colors hover:border-accent hover:text-accent"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => go(1)}
-                  aria-label="Próximo caso"
-                  className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground transition-colors hover:bg-accent"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-5 flex justify-center gap-2">
-              {CASOS.map((c, i) => (
-                <button
-                  key={c.title}
-                  type="button"
-                  onClick={() => setIndex(i)}
-                  aria-label={`Ver caso ${i + 1}`}
-                  aria-current={i === index}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all duration-300",
-                    i === index ? "w-10 bg-gold" : "w-4 bg-border hover:bg-accent/50",
-                  )}
-                />
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
+const techIcons = [ScanLine, Crosshair, Box, Move3d];
 
 export function Tecnologia() {
   return (
-    <section id="tecnologia" className="relative scroll-mt-28 overflow-hidden bg-primary py-24 lg:py-32">
+    <section
+      id="tecnologia"
+      className="relative scroll-mt-24 overflow-hidden bg-primary py-24 text-primary-foreground sm:py-32 lg:py-44"
+    >
+      <div className="grain pointer-events-none absolute inset-0 opacity-[.03]" />
       <div
-        className="pointer-events-none absolute -top-40 right-0 h-[30rem] w-[30rem] rounded-full bg-accent/25 blur-3xl"
+        className="pointer-events-none absolute -top-64 -right-64 h-[42rem] w-[42rem] rounded-full border border-primary-foreground/10"
         aria-hidden="true"
-      />
-      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          tone="dark"
-          eyebrow="Tecnologia"
-          title="Equipamentos de última geração, do diagnóstico à entrega"
-          lead="Tecnologia existe para dar previsibilidade ao resultado e conforto ao paciente."
-        />
-
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {TECNOLOGIA.map((item, i) => (
-            <Reveal as="li" key={item.title} delay={(i % 3) * 90}>
-              <div className="lift h-full rounded-3xl border border-primary-foreground/12 bg-primary-foreground/6 p-7 backdrop-blur-sm hover:border-gold/50">
-                <span className="font-display text-sm text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 text-lg text-primary-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">
-                  {item.text}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
-
-        <div className="mt-16 grid gap-5 sm:grid-cols-3">
-          {[
-            { src: clinic2, alt: "Consultório com scanner intraoral e monitor digital" },
-            { src: clinic3, alt: "Planejamento digital do sorriso e impressora 3D" },
-            { src: clinic1, alt: "Sala de espera moderna da clínica" },
-          ].map((img, i) => (
-            <Reveal key={img.alt} delay={i * 90}>
-              <div className="overflow-hidden rounded-3xl border border-primary-foreground/12">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  width={1200}
-                  height={900}
-                  loading="lazy"
-                  className="h-52 w-full object-cover transition-transform duration-700 hover:scale-105"
-                />
-              </div>
-            </Reveal>
-          ))}
-        </div>
+      >
+        <span className="absolute inset-16 rounded-full border border-gold/10" />
+        <span className="absolute inset-32 rounded-full border border-primary-foreground/10" />
       </div>
-    </section>
-  );
-}
-
-export function ComoFunciona() {
-  return (
-    <section className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="Como funciona"
-          title="Cinco etapas simples até o seu novo sorriso"
-        />
-
-        <ol className="relative mt-16 grid gap-8 lg:grid-cols-5">
-          <span
-            className="absolute top-6 right-0 left-0 hidden h-px bg-gradient-to-r from-transparent via-border to-transparent lg:block"
-            aria-hidden="true"
+      <div className="relative mx-auto grid max-w-[90rem] gap-16 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-24 lg:px-12">
+        <div className="lg:sticky lg:top-32 lg:self-start">
+          <SectionHeading
+            eyebrow="Tecnologia clínica"
+            tone="dark"
+            title={
+              <>
+                Precisão que você <em className="font-normal text-gold">pode perceber.</em>
+              </>
+            }
+            lead="A tecnologia não substitui o olhar clínico. Ela amplia nossa capacidade de enxergar, planejar e conduzir cada etapa com mais clareza."
           />
-          {ETAPAS.map((etapa, i) => (
-            <Reveal as="li" key={etapa.step} delay={i * 110} className="relative">
-              <span className="relative z-10 grid h-12 w-12 place-items-center rounded-2xl bg-primary font-display text-sm font-semibold text-primary-foreground shadow-soft">
-                {etapa.step}
+          <Reveal delay={100} className="relative mt-10 overflow-hidden rounded-[1.6rem]">
+            <img
+              src={clinic2}
+              alt="Equipamentos digitais no consultório odontológico"
+              width={1200}
+              height={900}
+              loading="lazy"
+              className="h-[26rem] w-full object-cover sm:h-[34rem]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/75 via-transparent to-transparent" />
+            <div className="absolute right-6 bottom-6 left-6 flex items-center justify-between border-t border-white/30 pt-4">
+              <span className="text-[.58rem] font-bold tracking-[.18em] uppercase">
+                Planejamento digital integrado
               </span>
-              <h3 className="mt-5 text-lg text-primary">{etapa.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{etapa.text}</p>
-            </Reveal>
-          ))}
+              <span className="h-2 w-2 rounded-full bg-gold shadow-[0_0_0_6px_rgb(190_153_104/.18)]" />
+            </div>
+          </Reveal>
+        </div>
+
+        <ol className="border-t border-primary-foreground/12">
+          {TECNOLOGIA.map((item, index) => {
+            const Icon = techIcons[index]!;
+            return (
+              <Reveal as="li" key={item.title} delay={index * 70}>
+                <article className="group grid gap-5 border-b border-primary-foreground/12 py-10 sm:grid-cols-[4rem_1fr] sm:py-14">
+                  <span className="grid h-12 w-12 place-items-center rounded-full border border-primary-foreground/20 text-gold transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-primary">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <span className="text-[.58rem] font-bold tracking-[.2em] text-primary-foreground/35 uppercase">
+                      0{index + 1}
+                    </span>
+                    <h3 className="mt-2 text-3xl sm:text-4xl">{item.title}</h3>
+                    <p className="mt-3 max-w-md text-sm leading-6 text-primary-foreground/55">
+                      {item.text}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </ol>
       </div>
     </section>
   );
 }
 
-export function Galeria() {
-  const imgs = [clinic1, clinic2, clinic3];
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => setOffset(window.scrollY * 0.02);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+export function Processo() {
   return (
-    <section className="bg-muted/60 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading
-          eyebrow="Nossa estrutura"
-          title="Um ambiente pensado para o seu conforto"
-          lead="Imagens ilustrativas da estrutura, dos consultórios e dos espaços de convivência."
-        />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {imgs.map((src, i) => (
-            <Reveal key={i} delay={i * 90}>
-              <div className="group overflow-hidden rounded-3xl shadow-soft">
-                <img
-                  src={src}
-                  alt="Ambiente da clínica Odonto Aurora"
-                  width={1200}
-                  height={900}
-                  loading="lazy"
-                  style={{ transform: `translateY(${(i % 2 === 0 ? -1 : 1) * offset}px)` }}
-                  className="h-60 w-full scale-110 object-cover transition-transform duration-700 group-hover:scale-[1.16]"
-                />
-              </div>
-            </Reveal>
-          ))}
+    <section className="bg-card py-24 sm:py-32 lg:py-40">
+      <div className="mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-24">
+          <div>
+            <SectionHeading
+              eyebrow="Sua jornada"
+              title={
+                <>
+                  Cuidado claro,
+                  <br />
+                  <em className="font-normal text-accent">do início em diante.</em>
+                </>
+              }
+              lead="Sem atalhos, sem excesso de informação. Apenas uma sequência bem conduzida e decisões compartilhadas."
+            />
+          </div>
+          <ol className="border-t border-border">
+            {ETAPAS.map((item, index) => (
+              <Reveal as="li" key={item.step} delay={index * 60}>
+                <div className="grid gap-3 border-b border-border py-7 sm:grid-cols-[4rem_.8fr_1.2fr] sm:items-center sm:gap-6 sm:py-9">
+                  <span className="text-[.62rem] font-bold tracking-[.16em] text-gold">
+                    {item.step}
+                  </span>
+                  <h3 className="text-2xl text-primary sm:text-3xl">{item.title}</h3>
+                  <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

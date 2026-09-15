@@ -1,20 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
-import { Sobre, Diferenciais, Tratamentos } from "@/components/site/SectionsClinica";
-import {
-  AntesDepois,
-  Tecnologia,
-  ComoFunciona,
-  Galeria,
-} from "@/components/site/SectionsResultados";
+import { Clinica, Experiencia, Tratamentos } from "@/components/site/SectionsClinica";
+import { Processo, Tecnologia } from "@/components/site/SectionsResultados";
 import { Depoimentos, Equipe, Faq } from "@/components/site/SectionsPessoas";
 import { CtaFinal, Footer, WhatsAppFab } from "@/components/site/SectionsFooter";
 import { CLINIC } from "@/lib/site-data";
 
-const title = "Odonto Aurora | Implantes, Facetas, Invisalign e Prótese Dentária";
+const title = "Odonto Aurora | Odontologia contemporânea em São Paulo";
 const description =
-  "Clínica odontológica no Jardim Aurora com atendimento humanizado, implantes, facetas, Invisalign, próteses e tratamentos completos para o seu sorriso.";
+  "Clínica odontológica no Jardim Aurora, São Paulo, com implantes, facetas, alinhadores e reabilitação oral planejados com precisão.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -58,19 +53,14 @@ function Index() {
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <h1 className="sr-only">
-          Odonto Aurora — clínica odontológica no Jardim Aurora, São Paulo
-        </h1>
         <Hero />
-        <Sobre />
-        <Diferenciais />
+        <Clinica />
         <Tratamentos />
-        <AntesDepois />
+        <Experiencia />
         <Tecnologia />
-        <ComoFunciona />
-        <Depoimentos />
-        <Galeria />
         <Equipe />
+        <Depoimentos />
+        <Processo />
         <Faq />
         <CtaFinal />
       </main>

@@ -1,137 +1,113 @@
-import { MessageCircle, MapPin, Phone, Clock } from "lucide-react";
+import { ArrowUp, Instagram, MessageCircle } from "lucide-react";
+import clinic1 from "@/assets/clinic-1.jpg";
 import { CLINIC, NAV, whatsappLink } from "@/lib/site-data";
 import { Logo, Reveal, WhatsButton } from "./primitives";
 
 export function CtaFinal() {
   return (
-    <section className="relative overflow-hidden bg-primary py-24 lg:py-28">
-      <div
-        className="pointer-events-none absolute -bottom-32 left-1/2 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-accent/25 blur-3xl"
-        aria-hidden="true"
-      />
-      <Reveal className="relative mx-auto max-w-3xl px-5 text-center lg:px-8">
-        <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-4 py-1.5 text-[0.7rem] font-semibold tracking-[0.2em] text-gold uppercase">
-          Agendamento rápido
-        </span>
-        <h2 className="mt-6 text-3xl leading-[1.12] text-primary-foreground sm:text-4xl lg:text-[2.9rem]">
-          Pronto para conquistar um sorriso ainda mais bonito?
-        </h2>
-        <p className="mt-5 text-base leading-relaxed text-primary-foreground/75">
-          Agende uma avaliação e descubra o tratamento ideal para você.
-        </p>
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <WhatsButton href={whatsappLink} variant="gold" className="px-9 py-4 text-base">
-            <MessageCircle className="h-5 w-5" aria-hidden="true" />
-            Agendar pelo WhatsApp
-          </WhatsButton>
-          <a
-            href={CLINIC.phoneHref}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-primary-foreground/25 px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:border-gold hover:text-gold"
-          >
-            <Phone className="h-5 w-5" aria-hidden="true" />
-            {CLINIC.phone}
-          </a>
+    <section className="px-3 pb-3 sm:px-5 sm:pb-5">
+      <div className="relative mx-auto min-h-[36rem] max-w-[100rem] overflow-hidden rounded-[1.75rem] bg-primary">
+        <img
+          src={clinic1}
+          alt=""
+          width={1200}
+          height={900}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-primary/65" />
+        <div className="grain absolute inset-0 opacity-[.03]" />
+        <div className="relative flex min-h-[36rem] items-center justify-center px-6 py-20 text-center text-primary-foreground">
+          <Reveal className="max-w-4xl">
+            <p className="text-[.62rem] font-bold tracking-[.24em] text-gold uppercase">
+              Seu próximo passo
+            </p>
+            <h2 className="mt-6 text-5xl leading-[.92] sm:text-6xl lg:text-[5.5rem]">
+              Seu sorriso pode começar com uma{" "}
+              <em className="font-normal text-gold">boa conversa.</em>
+            </h2>
+            <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-primary-foreground/65">
+              Agende uma avaliação e descubra, com clareza, qual plano de cuidado faz sentido para
+              você.
+            </p>
+            <div className="mt-9">
+              <WhatsButton href={whatsappLink} variant="gold">
+                Agendar minha avaliação
+              </WhatsButton>
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/50">
-      <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.7fr_1.2fr]">
+    <footer className="bg-primary px-5 pt-20 pb-10 text-primary-foreground sm:px-8 lg:px-12 lg:pt-28">
+      <div className="mx-auto max-w-[90rem]">
+        <div className="grid gap-12 border-b border-primary-foreground/12 pb-16 lg:grid-cols-[1.25fr_.75fr_.75fr_.85fr]">
           <div>
-            <Logo />
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              {CLINIC.tagline}.
+            <Logo tone="dark" />
+            <p className="mt-7 max-w-sm text-sm leading-7 text-primary-foreground/52">
+              {CLINIC.tagline}. Um espaço dedicado a decisões cuidadosas, tecnologia bem aplicada e
+              resultados naturais.
             </p>
-            <ul className="mt-6 space-y-3 text-sm">
-              <li className="flex items-start gap-2.5 text-muted-foreground">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                <span className="min-w-0">{CLINIC.address}</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                <a href={CLINIC.phoneHref} className="text-muted-foreground hover:text-accent">
-                  {CLINIC.phone}
-                </a>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-accent"
-                >
-                  WhatsApp da clínica
-                </a>
-              </li>
-            </ul>
           </div>
-
-          <nav aria-label="Links rápidos">
-            <h3 className="text-sm font-semibold tracking-[0.16em] text-primary uppercase">
-              Links rápidos
-            </h3>
-            <ul className="mt-5 space-y-2.5 text-sm">
-              {NAV.map((item) => (
-                <li key={item.id}>
-                  <a href={`#${item.id}`} className="text-muted-foreground hover:text-accent">
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a href="#top" className="text-muted-foreground hover:text-accent">
-                  Início
-                </a>
-              </li>
-            </ul>
-
-            <h3 className="mt-8 flex items-center gap-2 text-sm font-semibold tracking-[0.16em] text-primary uppercase">
-              <Clock className="h-4 w-4 text-accent" aria-hidden="true" />
-              Horários
-            </h3>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {CLINIC.hours.map((h) => (
-                <li key={h.day} className="flex flex-wrap justify-between gap-2">
-                  <span>{h.day}</span>
-                  <span className="font-medium text-primary">{h.time}</span>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
           <div>
-            <h3 className="text-sm font-semibold tracking-[0.16em] text-primary uppercase">
-              Como chegar
+            <h3 className="font-sans text-[.6rem] font-bold tracking-[.18em] text-gold uppercase">
+              Navegação
             </h3>
-            <div className="mt-5 overflow-hidden rounded-3xl border border-border shadow-soft">
-              <iframe
-                title="Mapa da localização da clínica Odonto Aurora"
-                src="https://www.google.com/maps?q=Rua%20das%20Palmeiras%2C%20245%2C%20Jardim%20Aurora%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004567-000&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-64 w-full border-0"
-              />
+            <nav className="mt-5 grid gap-3" aria-label="Navegação do rodapé">
+              {NAV.slice(0, 5).map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className="w-fit text-sm text-primary-foreground/55 transition-colors hover:text-primary-foreground"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div>
+            <h3 className="font-sans text-[.6rem] font-bold tracking-[.18em] text-gold uppercase">
+              Contato
+            </h3>
+            <div className="mt-5 grid gap-3 text-sm text-primary-foreground/55">
+              <a href={CLINIC.phoneHref} className="w-fit hover:text-primary-foreground">
+                {CLINIC.phone}
+              </a>
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit hover:text-primary-foreground"
+              >
+                WhatsApp
+              </a>
+              <a href="#" className="flex w-fit items-center gap-2 hover:text-primary-foreground">
+                <Instagram className="h-4 w-4" /> Instagram
+              </a>
             </div>
           </div>
+          <div>
+            <h3 className="font-sans text-[.6rem] font-bold tracking-[.18em] text-gold uppercase">
+              Visite-nos
+            </h3>
+            <p className="mt-5 text-sm leading-6 text-primary-foreground/55">{CLINIC.address}</p>
+            <p className="mt-4 text-sm text-primary-foreground/55">
+              {CLINIC.hours[0]?.day}
+              <br />
+              {CLINIC.hours[0]?.time}
+            </p>
+          </div>
         </div>
-
-        <div className="mt-14 grid gap-4 border-t border-border pt-7 text-xs text-muted-foreground sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
-          <p className="min-w-0">
-            © {new Date().getFullYear()} {CLINIC.name}. Todos os direitos reservados.
-          </p>
-          <div className="flex flex-wrap gap-5 sm:justify-end">
-            <a href="#faq" className="hover:text-accent">
-              Política de Privacidade
-            </a>
-            <a href="#faq" className="hover:text-accent">
-              LGPD
-            </a>
+        <div className="flex flex-col gap-5 pt-8 text-[.58rem] font-bold tracking-[.1em] text-primary-foreground/35 uppercase sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Odonto Aurora. Todos os direitos reservados.</p>
+          <div className="flex gap-5">
+            <a href="#">Privacidade</a>
+            <a href="#">Termos de uso</a>
           </div>
         </div>
       </div>
@@ -141,15 +117,24 @@ export function Footer() {
 
 export function WhatsAppFab() {
   return (
-    <a
-      href={whatsappLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Falar no WhatsApp"
-      className="group fixed right-5 bottom-5 z-50 inline-flex items-center gap-3 rounded-full bg-accent px-5 py-4 text-sm font-semibold text-accent-foreground shadow-lift transition-all duration-300 hover:-translate-y-1 hover:bg-primary"
-    >
-      <MessageCircle className="h-5 w-5" aria-hidden="true" />
-      <span className="hidden sm:inline">Agendar no WhatsApp</span>
-    </a>
+    <div className="fixed right-4 bottom-4 z-40 flex items-center gap-2 sm:right-6 sm:bottom-6">
+      <a
+        href="#top"
+        aria-label="Voltar ao topo"
+        className="hidden h-12 w-12 place-items-center rounded-full border border-border bg-background/90 text-primary shadow-soft backdrop-blur-md transition-transform hover:-translate-y-1 sm:grid"
+      >
+        <ArrowUp className="h-4 w-4" />
+      </a>
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Agendar pelo WhatsApp"
+        className="group flex h-14 items-center gap-3 rounded-full bg-accent px-5 text-xs font-bold tracking-[.06em] text-accent-foreground uppercase shadow-lift transition-transform hover:-translate-y-1"
+      >
+        <MessageCircle className="h-5 w-5" />
+        <span className="hidden sm:inline">Agendar avaliação</span>
+      </a>
+    </div>
   );
 }

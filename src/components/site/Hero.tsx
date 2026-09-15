@@ -1,142 +1,110 @@
-import { CheckCircle2, ScanLine, Sparkles, Boxes, Activity } from "lucide-react";
+import { ArrowDown, Check } from "lucide-react";
 import heroImg from "@/assets/hero-dentist.jpg";
-import { TRUST_BAR, whatsappLink } from "@/lib/site-data";
+import { whatsappLink } from "@/lib/site-data";
 import { Reveal, WhatsButton } from "./primitives";
-
-const SELOS = [
-  "Atendimento Humanizado",
-  "Tecnologia Odontológica",
-  "Mais de 5.000 avaliações no Google",
-];
-
-const FLOATING = [
-  { icon: ScanLine, label: "Escaneamento digital", pos: "left-[-4%] top-[18%]", delay: "0s" },
-  { icon: Sparkles, label: "Sorriso planejado", pos: "right-[-6%] top-[8%]", delay: "1.2s" },
-  { icon: Activity, label: "Raio-X digital", pos: "right-[-4%] bottom-[26%]", delay: "2.1s" },
-  { icon: Boxes, label: "Escaneamento 3D", pos: "left-[-2%] bottom-[10%]", delay: "0.6s" },
-];
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24">
-      <div className="surface-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
+    <section
+      id="top"
+      className="relative min-h-[760px] overflow-hidden bg-primary text-primary-foreground lg:min-h-screen"
+    >
       <div
-        className="pointer-events-none absolute -top-40 -right-32 h-[36rem] w-[36rem] rounded-full bg-accent/12 blur-3xl"
+        className="grain pointer-events-none absolute inset-0 z-20 opacity-[.025]"
         aria-hidden="true"
       />
-      <div
-        className="pointer-events-none absolute top-1/3 -left-40 h-[28rem] w-[28rem] rounded-full bg-primary/8 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-          <div>
+      <div className="mx-auto grid min-h-[760px] min-w-0 max-w-[100rem] lg:min-h-screen lg:grid-cols-[48%_52%]">
+        <div className="relative z-10 flex min-w-0 items-center px-5 pt-32 pb-16 sm:px-8 lg:px-12 lg:pt-36 lg:pb-28 xl:px-20">
+          <div className="min-w-0 max-w-2xl">
             <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/8 px-4 py-1.5 text-[0.7rem] font-semibold tracking-[0.18em] text-gold-foreground uppercase">
-                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                Odontologia moderna · Jardim Aurora, São Paulo
-              </span>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h1 className="mt-6 text-4xl leading-[1.05] text-primary sm:text-5xl lg:text-[3.85rem]">
-                Seu sorriso merece{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 italic text-accent">
-                    tecnologia, cuidado e confiança.
-                  </span>
-                  <span
-                    className="absolute inset-x-0 bottom-1 z-0 h-3 rounded-full bg-gold/25"
-                    aria-hidden="true"
-                  />
-                </span>
-              </h1>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Oferecemos tratamentos odontológicos modernos com atendimento humanizado,
-                profissionais qualificados e tecnologia para cuidar da saúde e da estética
-                do seu sorriso.
+              <p className="flex min-w-0 items-start gap-3 text-[.6rem] leading-5 font-bold tracking-[.2em] text-gold uppercase sm:items-center sm:text-[.63rem] sm:tracking-[.25em]">
+                <span className="mt-2 h-px w-10 shrink-0 bg-gold/70 sm:mt-0" />
+                <span>Odontologia contemporânea · São Paulo</span>
               </p>
             </Reveal>
-
+            <Reveal delay={90}>
+              <h1 className="mt-7 text-[3.5rem] leading-[.85] sm:text-7xl lg:text-[5.4rem] xl:text-[6.25rem]">
+                Precisão para cuidar.
+                <em className="mt-2 block font-normal text-gold">
+                  Sensibilidade para transformar.
+                </em>
+              </h1>
+            </Reveal>
+            <Reveal delay={170}>
+              <p className="mt-8 max-w-lg text-sm leading-7 text-primary-foreground/62 sm:text-base">
+                Uma experiência odontológica desenhada em torno de você — do diagnóstico digital ao
+                cuidado que permanece depois do tratamento.
+              </p>
+            </Reveal>
             <Reveal delay={240}>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <WhatsButton href={whatsappLink}>Agendar Consulta</WhatsButton>
-                <WhatsButton href={whatsappLink} variant="outline">
-                  Falar no WhatsApp
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <WhatsButton href={whatsappLink} variant="gold">
+                  Agendar avaliação
+                </WhatsButton>
+                <WhatsButton href="#tratamentos" variant="outline">
+                  Conhecer tratamentos
                 </WhatsButton>
               </div>
             </Reveal>
-
-            <Reveal delay={320}>
-              <ul className="mt-10 grid gap-3 sm:grid-cols-3">
-                {SELOS.map((selo) => (
-                  <li
-                    key={selo}
-                    className="flex items-start gap-2 rounded-2xl border border-border bg-card/70 p-3.5 text-sm font-medium text-primary shadow-soft"
+            <Reveal delay={310}>
+              <div className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-primary-foreground/12 pt-6">
+                {[
+                  "Planejamento individual",
+                  "Tecnologia integrada",
+                  "Cuidado multidisciplinar",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="flex items-center gap-2 text-[.65rem] tracking-[.06em] text-primary-foreground/58 uppercase"
                   >
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                    <span className="min-w-0">{selo}</span>
-                  </li>
+                    <Check className="h-3.5 w-3.5 text-gold" />
+                    {item}
+                  </span>
                 ))}
-              </ul>
+              </div>
             </Reveal>
           </div>
+        </div>
 
-          <Reveal delay={200} className="relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div
-                className="absolute -inset-3 rounded-[2.75rem] border border-gold/30"
-                aria-hidden="true"
-              />
-              <div className="relative overflow-hidden rounded-[2.25rem] shadow-lift">
-                <img
-                  src={heroImg}
-                  alt="Dentista atendendo uma paciente em consultório odontológico moderno e iluminado"
-                  width={1280}
-                  height={1600}
-                  className="h-[26rem] w-full object-cover object-top sm:h-[32rem] lg:h-[38rem]"
-                />
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent"
-                  aria-hidden="true"
-                />
-              </div>
-
-              {FLOATING.map(({ icon: Icon, label, pos, delay }) => (
-                <div
-                  key={label}
-                  style={{ animationDelay: delay }}
-                  className={`float-soft glass-card absolute hidden items-center gap-2 rounded-2xl px-3.5 py-2.5 shadow-soft sm:flex ${pos}`}
-                >
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-accent/12 text-accent">
-                    <Icon className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  <span className="text-xs font-semibold text-primary">{label}</span>
-                </div>
-              ))}
+        <div className="relative min-h-[540px] overflow-hidden lg:min-h-screen">
+          <img
+            src={heroImg}
+            alt="Atendimento odontológico em um consultório contemporâneo"
+            width={1280}
+            height={1600}
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_28%]"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-primary/25 via-transparent to-primary/45 lg:bg-gradient-to-r lg:from-primary/35 lg:via-transparent lg:to-transparent"
+            aria-hidden="true"
+          />
+          <div className="absolute right-5 bottom-6 left-5 flex items-end justify-between border-t border-white/35 pt-4 text-white sm:right-10 sm:bottom-10 sm:left-10">
+            <p className="max-w-[16rem] text-[.62rem] leading-5 font-bold tracking-[.15em] uppercase">
+              Jardim Aurora
+              <br />
+              São Paulo — SP
+            </p>
+            <div className="relative grid h-20 w-20 place-items-center rounded-full border border-white/40">
+              <div className="absolute inset-2 rounded-full border border-white/15" />
+              <span className="text-center text-[.52rem] font-bold tracking-[.15em] uppercase">
+                Cuidado
+                <br />
+                em cada
+                <br />
+                detalhe
+              </span>
             </div>
-          </Reveal>
+          </div>
         </div>
       </div>
-
-      <div className="relative mx-auto mt-16 max-w-7xl px-5 lg:mt-20 lg:px-8">
-        <Reveal className="rounded-3xl border border-border bg-muted/70 px-6 py-5">
-          <ul className="grid gap-4 text-center sm:grid-cols-2 lg:grid-cols-5">
-            {TRUST_BAR.map((item) => (
-              <li
-                key={item}
-                className="text-xs font-semibold tracking-[0.12em] text-primary/80 uppercase"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </div>
+      <a
+        href="#clinica"
+        aria-label="Explorar o site"
+        className="absolute bottom-6 left-1/2 z-30 hidden -translate-x-1/2 items-center gap-2 text-[.55rem] font-bold tracking-[.18em] text-primary-foreground/55 uppercase lg:flex"
+      >
+        Explorar <ArrowDown className="h-3 w-3" />
+      </a>
     </section>
   );
 }

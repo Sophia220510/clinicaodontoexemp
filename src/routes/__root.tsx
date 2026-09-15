@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Odonto Aurora | Implantes, Facetas, Invisalign e Prótese Dentária" },
+      { title: "Odonto Aurora | Odontologia contemporânea em São Paulo" },
       {
         name: "description",
         content:
-          "Clínica odontológica no Jardim Aurora com atendimento humanizado, implantes, facetas, Invisalign, próteses e tratamentos completos para o seu sorriso.",
+          "Clínica odontológica no Jardim Aurora, São Paulo, com implantes, facetas, alinhadores e reabilitação oral planejados com precisão.",
       },
-      { name: "theme-color", content: "#103B73" },
+      { name: "theme-color", content: "#292925" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Manrope:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -100,7 +100,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
-
   }),
 
   shellComponent: RootShell,
