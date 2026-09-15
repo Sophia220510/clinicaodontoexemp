@@ -135,6 +135,117 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.1);
+    filter: saturate(0.72) brightness(0.8);
+  }
+  to {
+    transform: scale(1);
+    filter: saturate(0.9) brightness(0.88);
+  }
+}
+
+@keyframes hero-line-in {
+  from {
+    opacity: 0;
+    transform: translateY(115%) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes light-sweep {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateX(-28%) rotate(12deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(38%) rotate(12deg);
+  }
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(7px);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-ken-burns {
+  animation: hero-zoom 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-line {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.hero-line > span,
+.hero-line > em {
+  animation: hero-line-in 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+}
+
+.hero-line:nth-child(2) > em {
+  animation-delay: 0.58s;
+}
+
+.hero-light-sweep {
+  animation: light-sweep 9s ease-in-out 1.8s infinite;
+}
+
+.hero-fade-up {
+  animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero-fade-up-delay {
+  animation-delay: 0.9s;
+}
+
+.hero-fade-right {
+  animation: hero-fade-right 1s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+}
+
+.hero-orbit {
+  animation: orbit 14s linear infinite;
+}
+
+.hero-scroll-arrow {
+  animation: scroll-hint 1.8s ease-in-out infinite;
+}
+
 @keyframes pulse-soft {
   50% {
     opacity: 0.55;

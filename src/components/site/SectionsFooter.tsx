@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ArrowUp, Instagram, MessageCircle } from "lucide-react";
 import clinic1 from "@/assets/clinic-1.jpg";
 import { CLINIC, NAV, whatsappLink } from "@/lib/site-data";
@@ -116,8 +117,21 @@ export function Footer() {
 }
 
 export function WhatsAppFab() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const update = () => setVisible(window.scrollY > window.innerHeight * 0.72);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
   return (
-    <div className="fixed right-4 bottom-4 z-40 flex items-center gap-2 sm:right-6 sm:bottom-6">
+    <div
+      className={`fixed right-4 bottom-4 z-40 flex items-center gap-2 transition-all duration-500 sm:right-6 sm:bottom-6 ${
+        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-5 opacity-0"
+      }`}
+    >
       <a
         href="#top"
         aria-label="Voltar ao topo"
